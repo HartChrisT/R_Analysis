@@ -6,3 +6,7 @@ long_table <- gather(demo_table3,key="Metric",value="Score",buying_price:popular
 
 # spread the table back to its original form
 wide_table <- long_table %>% spread(key='Metric', value='Score')
+head(mpg)
+
+plt <- ggplot(mpg,aes(x=class)) #import dataset into ggplot2
+plt + geom_bar() #plot a bar plot
