@@ -30,3 +30,24 @@ plt <- ggplot(mpg,aes(x=displ,y=cty,color=class,shape=drv,size=cty))
 
 plt + geom_point() + 
   labs(x="engine Size (L)",y="City Fuel_efficiency (MPG)",color="Vehicle Class", shape="Type of Drive",size="city mpg")
+
+plt <- ggplot(mpg,aes(x=manufacturer, y=hwy,colour=manufacturer)) #import dataset into ggplot2
+plt + geom_boxplot() +
+  theme(axis.text.x=element_text(angle=45,hjust=1))
+
+mpg_summary <- mpg %>%
+  group_by(manufacturer,year) %>%
+  summarize(Mean_Hwy=mean(hwy),.groups ='keep')
+
+plt <- ggplot(mpg_summary,aes(x=manufacturer,y=factor(year),fill=Mean_Hwy))
+
+plt + geom_tile() + labs(x="Manufacturer", y="Vehicle Year", fill="Mean Highway(MPG)") +
+  theme(axis.text.x=element_text(angle=90,hjust=.75))
+
+cars <- head(mtcars) # Adding head to environment
+
+ggplot(mtcars,aes(x=wt)) + geom_density() #visualize distribution using density plot
+
+shapiro.test(mtcars$wt)
+
+
